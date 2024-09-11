@@ -18,9 +18,11 @@ class TestMeditationApp(unittest.TestCase):
         self.assertEqual(self.app.background_sound, "ocean waves")
 
     def test_is_playing_background_sound(self):
+        self.assertFalse(self.app.is_playing_background_sound("Ocean Waves"))
         self.app.choose_background_sound("Ocean Waves")
         self.assertTrue(self.app.is_playing_background_sound("Ocean Waves"))
         self.assertTrue(self.app.is_playing_background_sound("ocean waves"))
+        self.assertFalse(self.app.is_playing_background_sound("Rain"))
 
 if __name__ == '__main__':
     unittest.main()

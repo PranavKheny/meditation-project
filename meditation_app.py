@@ -56,7 +56,7 @@ class MeditationApp:
         self.background_sound = sound.lower()
 
     def is_playing_background_sound(self, sound):
-        return self.background_sound == sound.lower()
+        return self.background_sound == sound.lower() if self.background_sound else False
 
     def get_streak_count(self):
         return self.streak_count
