@@ -1,23 +1,21 @@
 from behave import given, when, then
 from meditation_app import MeditationApp
 
-# This is the correct location for our step definitions
-
 @given('the meditation app is open')
 def step_impl(context):
     context.app = MeditationApp()
 
-@when('I select a {duration} minute meditation session')
+@when('I select a {duration:d} minute meditation session')
 def step_impl(context, duration):
-    context.app.set_duration(int(duration))
+    context.app.set_duration(duration)
 
 @when('I start the session')
 def step_impl(context):
     context.app.start_session()
 
-@then('the app should display a timer counting down from {duration} minutes')
+@then('the app should display a timer counting down from {duration:d} minutes')
 def step_impl(context, duration):
-    assert context.app.get_remaining_time() == int(duration) * 60
+    assert context.app.get_remaining_time() == duration * 60
 
 @when('the timer reaches 0')
 def step_impl(context):
@@ -76,9 +74,9 @@ def step_impl(context, sound):
 def step_impl(context, sound):
     assert context.app.is_playing_background_sound(sound)
 
-@when('I complete a {duration} minute meditation session')
+@when('I complete a {duration:d} minute meditation session')
 def step_impl(context, duration):
-    context.app.set_duration(int(duration))
+    context.app.set_duration(duration)
     context.app.start_session()
     context.app.simulate_session_completion()
 
@@ -106,6 +104,6 @@ def step_impl(context, time):
 def step_impl(context):
     context.app.select_custom_duration()
 
-@when('I set the duration to {duration} minutes')
+@when('I set the duration to {duration:d} minutes')
 def step_impl(context, duration):
-    context.app.set_custom_duration(int(duration))
+    context.app.set_custom_duration(duration)
