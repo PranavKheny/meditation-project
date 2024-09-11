@@ -59,13 +59,13 @@ class MeditationApp:
         return not self.is_session_active
 
     def select_background_sounds(self):
-        pass
+        self.background_sound = None
 
     def choose_background_sound(self, sound):
         self.background_sound = sound.lower()
 
     def is_playing_background_sound(self, sound):
-        return self.background_sound == sound.lower()
+        return self.background_sound is not None and self.background_sound == sound.lower()
 
     def get_streak_count(self):
         return self.streak_count

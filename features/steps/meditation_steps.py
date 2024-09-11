@@ -72,7 +72,7 @@ def step_impl(context, sound):
 
 @then('the app should play {sound} sounds')
 def step_impl(context, sound):
-    assert context.app.is_playing_background_sound(sound)
+    assert context.app.is_playing_background_sound(sound), f"Expected {sound} to be playing, but it wasn't"
 
 @when('I complete a {duration:d} minute meditation session')
 def step_impl(context, duration):
