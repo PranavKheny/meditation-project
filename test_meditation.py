@@ -23,6 +23,9 @@ class TestMeditationApp(unittest.TestCase):
         self.assertTrue(self.app.is_playing_background_sound("Ocean Waves"))
         self.assertTrue(self.app.is_playing_background_sound("ocean waves"))
         self.assertFalse(self.app.is_playing_background_sound("Rain"))
+        
+    def test_no_background_sound_set(self):
+        self.assertFalse(self.app.is_playing_background_sound("Ocean Waves"))
 
 if __name__ == '__main__':
     unittest.main()
