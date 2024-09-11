@@ -63,3 +63,49 @@ def step_impl(context):
 @then('the app should return to the main menu')
 def step_impl(context):
     assert context.app.is_on_main_menu()
+
+@when('I select "Background Sounds" from the menu')
+def step_impl(context):
+    context.app.select_background_sounds()
+
+@when('I choose "{sound}"')
+def step_impl(context, sound):
+    context.app.choose_background_sound(sound)
+
+@then('the app should play {sound} sounds')
+def step_impl(context, sound):
+    assert context.app.is_playing_background_sound(sound)
+
+@when('I complete a {duration} minute meditation session')
+def step_impl(context, duration):
+    context.app.set_duration(int(duration))
+    context.app.start_session()
+    context.app.simulate_session_completion()
+
+@then('the app should update my total meditation time')
+def step_impl(context):
+    assert context.app.total_meditation_time > 0
+
+@then('the app should display a streak count')
+def step_impl(context):
+    assert context.app.get_streak_count() >= 1
+
+@when('I go to "Settings"')
+def step_impl(context):
+    context.app.open_settings()
+
+@when('I set a daily reminder for {time}')
+def step_impl(context, time):
+    context.app.set_daily_reminder(time)
+
+@then('the app should send a notification at {time} every day')
+def step_impl(context, time):
+    assert context.app.get_daily_reminder_time() == time
+
+@when('I select "Custom Duration"')
+def step_impl(context):
+    context.app.select_custom_duration()
+
+@when('I set the duration to {duration} minutes')
+def step_impl(context, duration):
+    context.app.set_custom_duration(int(duration))
