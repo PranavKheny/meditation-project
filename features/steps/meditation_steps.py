@@ -72,7 +72,10 @@ def step_impl(context, sound):
 
 @then('the app should play {sound} sounds')
 def step_impl(context, sound):
-    assert context.app.is_playing_background_sound(sound), f"Expected {sound} to be playing, but the current sound is {context.app.background_sound}"
+    assert context.app.is_playing_background_sound(sound), (
+        f"Expected '{sound}' to be playing, but the current sound is '{context.app.background_sound}'. "
+        f"Comparison made between '{sound.lower().rstrip('s')}' and '{context.app.background_sound.lower().rstrip('s') if context.app.background_sound else None}'"
+    )
 
 @when('I complete a {duration:d} minute meditation session')
 def step_impl(context, duration):
